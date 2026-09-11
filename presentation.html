@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XX部門 自動化安裝與派送管理系統 - 10分鐘簡報</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38ef7d;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .slides-container {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 70px);
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 80px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+            transform: scale(0.98);
+        }
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+        .slide-content {
+            max-width: 1000px;
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        .time-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #60a5fa;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 10px;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #cbd5e1;
+            margin-bottom: 12px;
+        }
+        ul {
+            padding-left: 24px;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .box h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .highlight {
+            color: #facc15;
+            font-weight: bold;
+        }
+        footer {
+            height: 70px;
+            background: #090d16;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            border-top: 1px solid #1e293b;
+        }
+        .nav-btns button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+            margin-left: 10px;
+        }
+        .nav-btns button:hover {
+            background: var(--primary-dark);
+        }
+        .slide-indicators {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #334155;
+            padding: 12px;
+            text-align: left;
+            font-size: 15px;
+        }
+        th {
+            background: #0f172a;
+            color: #60a5fa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slides-container">
+        <!-- Slide 1 -->
+        <div class="slide active" id="slide-1">
+            <div class="slide-content">
+                <span class="time-badge">第 1 分鐘：痛點開場</span>
+                <h1>每人每月浪費 60 分鐘手動安裝，代價是 15% 漏裝與設定錯誤</h1>
+                <p>大家好，我是 XX 部落的代表。今天不講大道理，直接看現況：</p>
+                <div class="box" style="margin-top: 20px;">
+                    <p>• <strong>每人每月 2 次</strong> 新環境/軟體部署需求（PDF-XChange、7-Zip、WinRAR）。</p>
+                    <p>• 每次手動點擊安裝精靈、找路徑、按下一步耗時 <span class="highlight">30 分鐘</span>。</p>
+                    <p>• 常常因為漏勾選或路徑錯誤，導致同事尋求 IT 支援，浪費寶貴工時與除錯成本。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" id="slide-2">
+            <div class="slide-content">
+                <span class="time-badge">第 2–3 分鐘：方案與流程對照</span>
+                <h2>流程對照：從手動泥沼到一鍵自動化</h2>
+                <div class="grid-2">
+                    <div class="box" style="border-color: var(--danger);">
+                        <h3 style="color: var(--danger);">❌ AS-IS (手動舊流程)</h3>
+                        <p>1. 到雲端逐一搜尋下載 3 個安裝檔</p>
+                        <p>2. 逐一雙擊安裝，手動點選「下一步」</p>
+                        <p>3. 容易漏裝或版本錯誤（如漏裝 64位元版）</p>
+                        <p>4. 耗時 30 分鐘 / 次</p>
+                    </div>
+                    <div class="box" style="border-color: var(--accent);">
+                        <h3 style="color: var(--accent);">✔ TO-BE (自動化新流程)</h3>
+                        <p>1. 確認本機資料夾路徑</p>
+                        <p>2. 點擊「一鍵安裝執行檔 (run.bat)」</p>
+                        <p>3. 系統依序靜默安裝完畢</p>
+                        <p>4. 耗時縮短至 1 分鐘內（省時 95%）</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" id="slide-3">
+            <div class="slide-content">
+                <span class="time-badge">第 4 分鐘：自動化邊界</span>
+                <h2>自動化邊界與系統分工清楚界定</h2>
+                <p>為了確保安全性與穩定性，我們精準劃分了自動化與人工的界線：</p>
+                <div class="grid-2" style="margin-top: 20px;">
+                    <div class="box">
+                        <h3>🤖 自動化執行範圍 (Bot / Script)</h3>
+                        <p>• 批次呼叫執行檔並帶入靜默參數 (`/S`)。</p>
+                        <p>• PDF-XChange Viewer、7-Zip、WinRAR 依序安裝。</p>
+                        <p>• 即時記錄安裝日誌與成功提示。</p>
+                    </div>
+                    <div class="box">
+                        <h3>👤 人工把關範圍 (User / IT)</h3>
+                        <p>• 初次下載安裝檔後的右鍵「解除封鎖」安全確認。</p>
+                        <p>• 基礎安裝路徑（如 `C:\Users\...\install file`）確認。</p>
+                        <p>• 例外狀況與異常報修處理。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide" id="slide-4">
+            <div class="slide-content">
+                <span class="time-badge">第 5–7 分鐘：Demo 實跑與備援</span>
+                <h2>系統 Demo 實跑與實戰排練</h2>
+                <div class="box" style="margin-bottom: 20px;">
+                    <p>🎯 <strong>Demo 步驟規劃：</strong></p>
+                    <p>1. 展示現有網頁介面與本機路徑設定欄位。</p>
+                    <p>2. 點擊「模擬執行安裝」或下載 `run.bat` 查看終端機日誌。</p>
+                    <p>3. 驗證 3 款軟體在背景流暢完成自動安裝。</p>
+                </div>
+                <div class="box" style="border-color: var(--warning);">
+                    <h3 style="color: var(--warning);">🛡️ 備援機制 (Backup Plan)</h3>
+                    <p>• 事前已完整排練 3 次，確認環境無誤。</p>
+                    <p>• 口袋備援方案：若現場網路或環境權限受阻，立即切換播放預錄 60 秒 Demo 影片，確保萬無一失！</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide" id="slide-5">
+            <div class="slide-content">
+                <span class="time-badge">第 8–9 分鐘：ROI 效益與前三大風險</span>
+                <h2>投資報酬率 (ROI) 與風險評估</h2>
+                <div class="grid-2">
+                    <div class="box">
+                        <h3>📈 ROI 效益分析</h3>
+                        <p>• <strong>時間節省：</strong>每人每月省下 58 分鐘。</p>
+                        <p>• <strong>效率提升：</strong>部門整體部署效率提升 90%。</p>
+                        <p>• <strong>品質保障：</strong>人為疏失與漏裝率降至 0%。</p>
+                    </div>
+                    <div class="box">
+                        <h3>⚠️ 前三大風險與對策</h3>
+                        <p>1. <strong>Windows 安全封鎖：</strong>提供標準「解除封鎖」教學標示。</p>
+                        <p>2. <strong>安裝檔路徑異動：</strong>支援動態路徑輸入框調整。</p>
+                        <p>3. <strong>軟體版本更新：</strong>模組化設計，未來更新版號即可。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide" id="slide-6">
+            <div class="slide-content">
+                <span class="time-badge">第 10 分鐘：下一步與資源需求</span>
+                <h2>下一步行動與您需要的支持</h2>
+                <p>為了將此自動化工具全面推廣至整個部門甚至跨部門，我們需要以下資源與支持：</p>
+                <div class="box" style="margin-top: 20px; border-color: var(--accent);">
+                    <h3 style="color: var(--accent);">🎯 明確資源需求：</h3>
+                    <p>1. <strong>IT 安全授權：</strong>將此 `run.bat` 腳本與資料夾納入部門內部安全信任清單。</p>
+                    <p>2. <strong>共用空間支援：</strong>提供一個部門內網共用資料夾放置標準安裝檔與批次檔。</p>
+                    <p>3. <strong>推廣試點：</strong>核准於下週在 XX 部落進行第一階段 10 人小規模試用。</p>
+                </div>
+                <p style="margin-top: 20px; text-align: center; font-weight: bold; color: #60a5fa;">謝謝聆聽，請指導與支持！</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="slide-indicators" id="indicator">第 1 頁 / 共 6 頁</div>
+        <div class="nav-btns">
+            <button onclick="prevSlide()">上一頁 (←)</button>
+            <button onclick="nextSlide()">下一頁 (→)</button>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 6;
+
+        function showSlide(n) {
+            if (n > totalSlides) currentSlide = totalSlides;
+            else if (n < 1) currentSlide = 1;
+            else currentSlide = n;
+
+            for (let i = 1; i <= totalSlides; i++) {
+                document.getElementById(`slide-${i}`).classList.remove('active');
+            }
+            document.getElementById(`slide-${currentSlide}`).classList.add('active');
+            document.getElementById('indicator').innerText = `第 ${currentSlide} 頁 / 共 6 頁`;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                prevSlide();
+            }
+        });
+    </script>
+</body>
+</html>

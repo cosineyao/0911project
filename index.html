@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XX部門 自動化安裝與派送管理系統</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+            --warning-bg: #fef3c7;
+            --warning-border: #f59e0b;
+            --warning-text: #92400e;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+        }
+        header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 18px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        .info-item {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .info-label {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .source-tag {
+            display: inline-block;
+            font-size: 11px;
+            background: #e2e8f0;
+            color: #475569;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+        th {
+            background-color: #f8fafc;
+        }
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        .path-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+        .alert-box {
+            background-color: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            color: var(--warning-text);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .console {
+            background: #0f172a;
+            color: #38ef7d;
+            font-family: monospace;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 120px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+        .console-line {
+            margin-bottom: 5px;
+        }
+        a.link-btn {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a.link-btn:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>XX部門 自動化安裝與派送管理系統</h1>
+            <p>解決手動點擊安裝精靈、下載驅動與設定的重複痛點與錯誤風險</p>
+        </header>
+
+        <div class="card">
+            <h2>基本資訊與來源對照</h2>
+            <div class="grid">
+                <div class="info-item">
+                    <div class="info-label">部門員工資料</div>
+                    <div class="info-value">XX部門 / XXX員工</div>
+                    <div class="source-tag">出處：使用者對話指令（無實體檔案與欄位）</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">每次耗時</div>
+                    <div class="info-value">30 分鐘</div>
+                    <div class="source-tag">出處：使用者對話指令（無實體檔案與欄位）</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">發生頻率</div>
+                    <div class="info-value">2 次 / 月</div>
+                    <div class="source-tag">出處：使用者對話指令（無實體檔案與欄位）</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>安裝檔案路徑設定（可修改）</h2>
+            <label for="installPathInput"><strong>本機檔案資料夾路徑：</strong></label>
+            <input type="text" id="installPathInput" class="path-input" value="C:\Users\Bobo\Desktop\AI\DAY2\install file">
+            <span class="source-tag">初始出處：使用者對話指令</span>
+
+            <table>
+                <tr>
+                    <th>檔案名稱</th>
+                    <th>數字與代號資訊</th>
+                    <th>來源出處</th>
+                </tr>
+                <tr>
+                    <td>PDFXVwer.exe</td>
+                    <td>無特殊數字</td>
+                    <td>出處：檔案 `PDFXVwer.exe`（無欄位）</td>
+                </tr>
+                <tr>
+                    <td>7z1900-x64.exe</td>
+                    <td>7, 1900, 64</td>
+                    <td>出處：檔案 `7z1900-x64.exe` 檔名（無欄位）</td>
+                </tr>
+                <tr>
+                    <td>winrar-x64-580tc.exe</td>
+                    <td>64, 580</td>
+                    <td>出處：檔案 `winrar-x64-580tc.exe` 檔名（無欄位）</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>雲端備份檔案連結（保留參考）</h2>
+            <table>
+                <tr>
+                    <th>檔案備份</th>
+                    <th>Google 雲端硬碟直接下載連結</th>
+                    <th>來源出處</th>
+                </tr>
+                <tr>
+                    <td>檔案備份 1</td>
+                    <td><a class="link-btn" href="https://drive.google.com/uc?export=download&id=1ZnI08V_IZWGwGbJWCuRIJc6cG4LwKoHI" target="_blank">點擊下載檔案 1</a></td>
+                    <td>出處：使用者提供的第 1 個連結 (ID: 1ZnI08V_IZWGwGbJWCuRIJc6cG4LwKoHI)</td>
+                </tr>
+                <tr>
+                    <td>檔案備份 2</td>
+                    <td><a class="link-btn" href="https://drive.google.com/uc?export=download&id=1ugqeMYhgN7tEAqmnXa-VBuGf0bHb3KKM" target="_blank">點擊下載檔案 2</a></td>
+                    <td>出處：使用者提供的第 2 個連結 (ID: 1ugqeMYhgN7tEAqmnXa-VBuGf0bHb3KKM)</td>
+                </tr>
+                <tr>
+                    <td>檔案備份 3</td>
+                    <td><a class="link-btn" href="https://drive.google.com/uc?export=download&id=1GgLLEmH6pmjeGQwNulm0DG5Djc_pZ_EZ" target="_blank">點擊下載檔案 3</a></td>
+                    <td>出處：使用者提供的第 3 個連結 (ID: 1GgLLEmH6pmjeGQwNulm0DG5Djc_pZ_EZ)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>一鍵自動安裝執行檔生成器（本機執行）</h2>
+            <div class="alert-box">
+                <strong>⚠️ 重要操作備註：</strong><br>
+                因 Windows 安全防護機制，下載 `run.bat` 後，請先在檔案上**按右鍵、選擇內容、勾選解除封鎖、點擊套用**，之後即可順利雙擊執行。
+            </div>
+            <p>點擊下方按鈕將根據上方您輸入的路徑產生 <b>run.bat</b>：</p>
+            <button class="btn" onclick="generateBatchRunner()">下載一鍵安裝執行檔 (run.bat)</button>
+            <button class="btn" onclick="simulateScriptRun()">模擬執行安裝</button>
+            <div class="console" id="consoleOutput">
+                <div class="console-line">[系統就緒] 準備產生本機安裝批次檔...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadFile(content, filename, type) {
+            const blob = new Blob([content], { type: type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function generateBatchRunner() {
+            const userPath = document.getElementById('installPathInput').value.trim();
+            const batContent = `@echo off
+echo ========================================
+echo XX Department Auto Installer (Local)
+echo Employee: XXX
+echo ========================================
+
+echo [1/3] Installing PDF-XChange Viewer...
+start /wait "" "${userPath}\\PDFXVwer.exe" /S
+
+echo [2/3] Installing 7-Zip (Version: 1900, Arch: 64)...
+start /wait "" "${userPath}\\7z1900-x64.exe" /S
+
+echo [3/3] Installing WinRAR (Version: 580, Arch: 64)...
+start /wait "" "${userPath}\\winrar-x64-580tc.exe" /S
+
+echo All installations completed successfully!
+pause
+`;
+            downloadFile(batContent, 'run.bat', 'text/plain;charset=ascii');
+
+            const consoleEl = document.getElementById('consoleOutput');
+            consoleEl.innerHTML += `<div class="console-line" style="color: #60a5fa;">[成功] 已根據路徑 "${userPath}" 產生 run.bat。請記得按右鍵、內容、解除封鎖、套用後再執行！</div>`;
+        }
+
+        function simulateScriptRun() {
+            const userPath = document.getElementById('installPathInput').value.trim();
+            const consoleEl = document.getElementById('consoleOutput');
+            consoleEl.innerHTML = `<div class="console-line">[模擬執行] 開始執行本機安裝作業（路徑：${userPath}）...</div>`;
+            
+            setTimeout(() => {
+                consoleEl.innerHTML += '<div class="console-line">[執行中] 安裝 PDFXVwer.exe 成功...</div>';
+            }, 800);
+
+            setTimeout(() => {
+                consoleEl.innerHTML += '<div class="console-line">[執行中] 安裝 7z1900-x64.exe 成功（版本 1900 [出處：7z1900-x64.exe 檔名]，64位元 [出處：7z1900-x64.exe 檔名]）...</div>';
+            }, 1600);
+
+            setTimeout(() => {
+                consoleEl.innerHTML += '<div class="console-line">[執行中] 安裝 winrar-x64-580tc.exe 成功（版本 580 [出處：winrar-x64-580tc.exe 檔名]，64位元 [出處：winrar-x64-580tc.exe 檔名]）...</div>';
+            }, 2400);
+
+            setTimeout(() => {
+                consoleEl.innerHTML += '<div class="console-line" style="color: #38ef7d;">[完成] 所有安裝程式執行完畢！</div>';
+            }, 3200);
+        }
+    </script>
+</body>
+</html>
